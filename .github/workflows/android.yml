@@ -21,10 +21,11 @@ jobs:
       - name: إعطاء صلاحيات
         run: chmod +x android/gradlew
 
-      - name: بناء APK
-        run: |
-          cd android
-          ./gradlew assembleDebug
+      - name: Build APK
+  run: |
+    cd android
+    chmod +x gradlew
+    ./gradlew assembleDebug
 
       - name: رفع APK
         uses: actions/upload-artifact@v4
