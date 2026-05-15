@@ -1,0 +1,33 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: تحميل الكود
+        uses: actions/checkout@v4
+
+      - name: إعداد Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: إعطاء صلاحيات
+        run: chmod +x android/gradlew
+
+      - name: بناء APK
+        run: |
+          cd android
+          ./gradlew assembleDebug
+
+      - name: رفع APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
