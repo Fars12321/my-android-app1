@@ -1,0 +1,56 @@
+name: Download footage (Pexels/Pixabay) 🎬
+
+on:
+  workflow_dispatch:
+    inputs:
+      plan:
+        description: 'Plan JSON path'
+        required: true
+        default: 'video-orchestrator/story_long_plan.json'
+      max:
+        description: 'Max scenes (0 = all)'
+        required: false
+        default: '0'
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: pip install requests
+
+      - name: Download clips via APIs
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+        run: |
+          python video-orchestrator/footage.py \
+            --plan "${{ inputs.plan }}" \
+            --out-dir video-orchestrator/footage \
+            --max "${{ inputs.max }}"
+
+      - name: Upload clips as artifact (preview)
+        uses: actions/upload-artifact@v4
+        with:
+          name: footage-clips
+          path: video-orchestrator/footage/
+          retention-days: 7
+
+      - name: Commit clips to branch
+        run: |
+          git config user.name "Arena Footage Bot"
+          git config user.email "footage-bot@local"
+          git add -f video-orchestrator/footage/
+          git commit -m "Add downloaded footage clips 🎥" || echo "nothing new"
+          git push

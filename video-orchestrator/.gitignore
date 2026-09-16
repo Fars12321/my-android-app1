@@ -5,4 +5,5 @@ __pycache__/
 !test_video.mp4
 !musa_pharaoh_story.mp4
 !musa_pharaoh_long.mp4
+!footage/*.mp4
 *.tmp
