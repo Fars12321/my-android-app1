@@ -3,4 +3,5 @@ __pycache__/
 .venv/
 *.mp4
 !test_video.mp4
+!musa_pharaoh_story.mp4
 *.tmp

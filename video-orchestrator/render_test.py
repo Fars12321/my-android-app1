@@ -41,7 +41,10 @@ def _imports():
 
 
 def shape(text, reshaper, get_display):
-    return get_display(reshaper.reshape(text))
+    out = reshaper.reshape(text)
+    # خط DejaVu لا يحوي محرف ﷲ (U+FDF2) ← نستبدله بصور الحروف العادية قبل العكس
+    out = out.replace("ﷲ", "ﺍﻟﻠﻪ")
+    return get_display(out)
 
 
 def estimate_duration(text):
@@ -112,7 +115,8 @@ def fit_caption(draw, ImageFont, text, W, reshaper, get_display, base_size=56):
 
 
 def draw_caption(Image, ImageDraw, ImageFont, base, captions, progress, W, H,
-                 fonts, reshaper, get_display, scene_idx, total_scenes, keywords):
+                 fonts, reshaper, get_display, scene_idx, total_scenes, keywords,
+                 badge_text="اختبار", show_keywords=True):
     """ارسم الترجمة الحالية + شارة المشهد + شريط التقدم."""
     draw = ImageDraw.Draw(base, "RGBA")
     n = len(captions)
@@ -149,11 +153,14 @@ def draw_caption(Image, ImageDraw, ImageFont, base, captions, progress, W, H,
         col = (255, 210, 60, 255) if i == idx else (255, 255, 255, 110)
         draw.ellipse([x - r, dots_y - r, x + r, dots_y + r], fill=col)
     # شارة المشهد
-    badge = shape(f"مشهد {scene_idx + 1} / {total_scenes} — اختبار", reshaper, get_display)
-    draw.rounded_rectangle([W // 2 - 150, 54, W // 2 + 150, 108], radius=20, fill=(0, 0, 0, 120))
+    badge = shape(f"مشهد {scene_idx + 1} / {total_scenes} — {badge_text}", reshaper, get_display)
+    _bb = draw.textbbox((0, 0), badge, font=fonts["small"])
+    _bw = (_bb[2] - _bb[0]) // 2 + 30
+    draw.rounded_rectangle([W // 2 - _bw, 54, W // 2 + _bw, 108], radius=20, fill=(0, 0, 0, 120))
     draw.text((W // 2, 81), badge, font=fonts["small"], fill=(255, 255, 255, 230), anchor="mm")
-    # الكلمات المفتاحية (صغيرة بالأعلى)
-    draw.text((W // 2, 130), keywords[:48], font=fonts["tiny"], fill=(255, 255, 255, 130), anchor="mm")
+    # الكلمات المفتاحية (صغيرة بالأعلى — للمعاينة فقط)
+    if show_keywords:
+        draw.text((W // 2, 130), keywords[:48], font=fonts["tiny"], fill=(255, 255, 255, 130), anchor="mm")
     # شريط التقدم
     bar_w, bar_h, bar_y = W - 120, 10, H - 70
     draw.rounded_rectangle([60, bar_y, 60 + bar_w, bar_y + bar_h], radius=5, fill=(255, 255, 255, 60))
@@ -161,19 +168,23 @@ def draw_caption(Image, ImageDraw, ImageFont, base, captions, progress, W, H,
     return base
 
 
-def write_audio_wav(np, wave, path, duration, sr=44100):
-    """موسيقى خلفية هادئة مولّدة (وتر ناعم) لمعاينة الاختبار."""
-    t = np.arange(int(duration * sr)) / sr
-    chord = (
-        0.10 * np.sin(2 * np.pi * 220.0 * t)
-        + 0.07 * np.sin(2 * np.pi * 277.18 * t)
-        + 0.06 * np.sin(2 * np.pi * 329.63 * t)
-    )
-    fade = min(1.0, duration / 4)
-    n_fade = int(fade * sr)
-    chord[:n_fade] *= np.linspace(0, 1, n_fade)
-    chord[-n_fade:] *= np.linspace(1, 0, n_fade)
-    stereo = np.stack([chord, chord], axis=1)
+def write_audio_wav(np, wave, path, duration, sr=44100, silent=False):
+    """مسار صوتي: وتر هادئ للمعاينة، أو صامت تماماً للمحتوى الملتزم (بدون معازف)."""
+    n = int(duration * sr)
+    if silent:
+        stereo = np.zeros((n, 2))
+    else:
+        t = np.arange(n) / sr
+        chord = (
+            0.10 * np.sin(2 * np.pi * 220.0 * t)
+            + 0.07 * np.sin(2 * np.pi * 277.18 * t)
+            + 0.06 * np.sin(2 * np.pi * 329.63 * t)
+        )
+        fade = min(1.0, duration / 4)
+        n_fade = int(fade * sr)
+        chord[:n_fade] *= np.linspace(0, 1, n_fade)
+        chord[-n_fade:] *= np.linspace(1, 0, n_fade)
+        stereo = np.stack([chord, chord], axis=1)
     pcm = (np.clip(stereo, -1, 1) * 12000).astype(np.int16)
     with wave.open(path, "wb") as wf:
         wf.setnchannels(2)
@@ -189,6 +200,10 @@ def main(argv=None):
     ap.add_argument("--fps", type=int, default=24)
     ap.add_argument("--max-scenes", type=int, default=0)
     ap.add_argument("--preview-dir", default="")
+    ap.add_argument("--audio", default="pad", choices=["pad", "silent"],
+                    help="pad=وتر معاينة، silent=بدون موسيقى (محتوى ملتزم)")
+    ap.add_argument("--badge", default="اختبار", help="نص شارة المشهد")
+    ap.add_argument("--hide-keywords", action="store_true", help="إخفاء سطر الكلمات المفتاحية")
     args = ap.parse_args(argv)
 
     np, Image, ImageDraw, ImageFont, ImageFilter, reshaper, get_display, imageio, imageio_ffmpeg = _imports()
@@ -227,6 +242,7 @@ def main(argv=None):
                 frame = draw_caption(
                     Image, ImageDraw, ImageFont, frame, scene["captions"], progress,
                     W, H, fonts, reshaper, get_display, si, len(scenes), scene["search_keywords"],
+                    badge_text=args.badge, show_keywords=not args.hide_keywords,
                 )
                 # تلاشي دخول/خروج عام
                 a = np.asarray(frame).astype(float)
@@ -242,7 +258,7 @@ def main(argv=None):
 
     # الصوت + الدمج النهائي
     wav_path = args.out + ".audio.wav"
-    write_audio_wav(np, wave, wav_path, total_dur)
+    write_audio_wav(np, wave, wav_path, total_dur, silent=(args.audio == "silent"))
     ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
     subprocess.run(
         [ffmpeg, "-y", "-i", tmp_video, "-i", wav_path,
