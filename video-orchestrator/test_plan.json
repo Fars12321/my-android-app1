@@ -1,0 +1,62 @@
+{
+  "video_metadata": {
+    "topic": "فيديو اختبار — تأكيد عمل المحرك",
+    "orientation": "vertical",
+    "total_estimated_scenes": "3"
+  },
+  "scenes": [
+    {
+      "scene_number": 1,
+      "voiceover_text": "هذا فيديو اختبار من محرك الإنتاج الذكي، والصورة والصوت يعملان الآن.",
+      "search_keywords": "futuristic artificial intelligence control room glowing screens technology",
+      "captions": [
+        {
+          "text": "هذا فيديو اختبار من",
+          "display_order": 1
+        },
+        {
+          "text": "محرك الإنتاج الذكي، والصورة",
+          "display_order": 2
+        },
+        {
+          "text": "والصوت يعملان الآن.",
+          "display_order": 3
+        }
+      ]
+    },
+    {
+      "scene_number": 2,
+      "voiceover_text": "الترجمة الديناميكية تظهر كلمة بكلمة في منتصف الشاشة بهذا الشكل.",
+      "search_keywords": "smartphone vertical video subtitles social media scrolling closeup",
+      "captions": [
+        {
+          "text": "الترجمة الديناميكية تظهر كلمة",
+          "display_order": 1
+        },
+        {
+          "text": "بكلمة في منتصف الشاشة",
+          "display_order": 2
+        },
+        {
+          "text": "بهذا الشكل.",
+          "display_order": 3
+        }
+      ]
+    },
+    {
+      "scene_number": 3,
+      "voiceover_text": "اكتمل الاختبار بنجاح، أرسل فكرتك لنبدأ الإنتاج الحقيقي.",
+      "search_keywords": "excited audience applause spotlight stage celebration confetti",
+      "captions": [
+        {
+          "text": "اكتمل الاختبار بنجاح، أرسل",
+          "display_order": 1
+        },
+        {
+          "text": "فكرتك لنبدأ الإنتاج الحقيقي.",
+          "display_order": 2
+        }
+      ]
+    }
+  ]
+}

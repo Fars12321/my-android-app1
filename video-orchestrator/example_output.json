@@ -1,0 +1,239 @@
+{
+  "video_metadata": {
+    "topic": "تأكيد تفعيل محرك إنتاج الفيديو الذكي وربط Pexels و Pixabay APIs",
+    "orientation": "vertical",
+    "total_estimated_scenes": "10"
+  },
+  "scenes": [
+    {
+      "scene_number": 1,
+      "voiceover_text": "تم تفعيل محرك إنتاج الفيديو الذكي بنجاح، والاستعداد الكامل بدأ الآن.",
+      "search_keywords": "futuristic artificial intelligence control room glowing screens technology",
+      "captions": [
+        {
+          "text": "تم تفعيل محرك",
+          "display_order": 1
+        },
+        {
+          "text": "إنتاج الفيديو الذكي",
+          "display_order": 2
+        },
+        {
+          "text": "بنجاح والاستعداد الكامل",
+          "display_order": 3
+        },
+        {
+          "text": "بدأ الآن",
+          "display_order": 4
+        }
+      ]
+    },
+    {
+      "scene_number": 2,
+      "voiceover_text": "تم ربط منصة بيكسلز بنجاح، وملايين المقاطع الاحترافية أصبحت بين يديك.",
+      "search_keywords": "professional cameraman filming cinematic video production set",
+      "captions": [
+        {
+          "text": "تم ربط منصة",
+          "display_order": 1
+        },
+        {
+          "text": "بيكسلز بنجاح وملايين",
+          "display_order": 2
+        },
+        {
+          "text": "المقاطع الاحترافية أصبحت",
+          "display_order": 3
+        },
+        {
+          "text": "بين يديك",
+          "display_order": 4
+        }
+      ]
+    },
+    {
+      "scene_number": 3,
+      "voiceover_text": "وتم تفعيل منصة بيكساباي أيضاً، لتتضاعف مكتبة المشاهد واللقطات السينمائية.",
+      "search_keywords": "cinematic film footage library video montage editing suite",
+      "captions": [
+        {
+          "text": "وتم تفعيل منصة",
+          "display_order": 1
+        },
+        {
+          "text": "بيكساباي أيضاً",
+          "display_order": 2
+        },
+        {
+          "text": "لتتضاعف مكتبة المشاهد",
+          "display_order": 3
+        },
+        {
+          "text": "واللقطات السينمائية",
+          "display_order": 4
+        }
+      ]
+    },
+    {
+      "scene_number": 4,
+      "voiceover_text": "المحرك يكتب السيناريو تلقائياً، ويقسم الفيديو إلى مشاهد سريعة لا تتجاوز ست ثوانٍ.",
+      "search_keywords": "screenwriter typing movie script screenplay writing closeup",
+      "captions": [
+        {
+          "text": "المحرك يكتب السيناريو",
+          "display_order": 1
+        },
+        {
+          "text": "تلقائياً ويقسم الفيديو",
+          "display_order": 2
+        },
+        {
+          "text": "إلى مشاهد سريعة",
+          "display_order": 3
+        },
+        {
+          "text": "لا تتجاوز ست ثوانٍ",
+          "display_order": 4
+        }
+      ]
+    },
+    {
+      "scene_number": 5,
+      "voiceover_text": "ولكل مشهد يولد كلمات بحث دقيقة بالإنجليزية، تجلب أدق اللقطات من المنصات.",
+      "search_keywords": "magnifying glass data search analysis glowing digital screen",
+      "captions": [
+        {
+          "text": "ولكل مشهد يولد",
+          "display_order": 1
+        },
+        {
+          "text": "كلمات بحث دقيقة",
+          "display_order": 2
+        },
+        {
+          "text": "بالإنجليزية تجلب أدق",
+          "display_order": 3
+        },
+        {
+          "text": "اللقطات من المنصات",
+          "display_order": 4
+        }
+      ]
+    },
+    {
+      "scene_number": 6,
+      "voiceover_text": "والترجمة الديناميكية تظهر كلمة بكلمة في منتصف الشاشة، بأسلوب فيديوهات السوشيال ميديا.",
+      "search_keywords": "smartphone vertical video subtitles social media scrolling closeup",
+      "captions": [
+        {
+          "text": "والترجمة الديناميكية تظهر",
+          "display_order": 1
+        },
+        {
+          "text": "كلمة بكلمة في",
+          "display_order": 2
+        },
+        {
+          "text": "منتصف الشاشة بأسلوب",
+          "display_order": 3
+        },
+        {
+          "text": "فيديوهات السوشيال ميديا",
+          "display_order": 4
+        }
+      ]
+    },
+    {
+      "scene_number": 7,
+      "voiceover_text": "يدعم المحرك الفيديو العمودي للشورتس والتيك توك، والأفقي لليوتيوب باحترافية كاملة.",
+      "search_keywords": "content creator filming vertical smartphone youtube studio lights",
+      "captions": [
+        {
+          "text": "يدعم المحرك الفيديو",
+          "display_order": 1
+        },
+        {
+          "text": "العمودي للشورتس والتيك",
+          "display_order": 2
+        },
+        {
+          "text": "توك والأفقي لليوتيوب",
+          "display_order": 3
+        },
+        {
+          "text": "باحترافية كاملة",
+          "display_order": 4
+        }
+      ]
+    },
+    {
+      "scene_number": 8,
+      "voiceover_text": "محرك المونتاج التلقائي يدمج الصوت والصورة والترجمة، وينتج الفيديو النهائي بضغطة واحدة.",
+      "search_keywords": "video editing timeline software color grading studio monitor",
+      "captions": [
+        {
+          "text": "محرك المونتاج التلقائي",
+          "display_order": 1
+        },
+        {
+          "text": "يدمج الصوت والصورة",
+          "display_order": 2
+        },
+        {
+          "text": "والترجمة وينتج الفيديو",
+          "display_order": 3
+        },
+        {
+          "text": "النهائي بضغطة واحدة",
+          "display_order": 4
+        }
+      ]
+    },
+    {
+      "scene_number": 9,
+      "voiceover_text": "سرعة وكفاءة عالية، من الفكرة إلى فيديو جاهز للنشر في دقائق معدودة فقط.",
+      "search_keywords": "fast rocket launch motion speed success sky clouds",
+      "captions": [
+        {
+          "text": "سرعة وكفاءة عالية",
+          "display_order": 1
+        },
+        {
+          "text": "من الفكرة إلى",
+          "display_order": 2
+        },
+        {
+          "text": "فيديو جاهز للنشر",
+          "display_order": 3
+        },
+        {
+          "text": "في دقائق معدودة فقط",
+          "display_order": 4
+        }
+      ]
+    },
+    {
+      "scene_number": 10,
+      "voiceover_text": "أرسل فكرتك الآن، ودع المحرك الذكي يحولها إلى فيديو يخطف الأنظار.",
+      "search_keywords": "excited audience applause spotlight stage celebration confetti",
+      "captions": [
+        {
+          "text": "أرسل فكرتك الآن",
+          "display_order": 1
+        },
+        {
+          "text": "ودع المحرك الذكي",
+          "display_order": 2
+        },
+        {
+          "text": "يحولها إلى فيديو",
+          "display_order": 3
+        },
+        {
+          "text": "يخطف الأنظار",
+          "display_order": 4
+        }
+      ]
+    }
+  ]
+}
