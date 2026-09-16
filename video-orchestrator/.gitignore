@@ -4,4 +4,5 @@ __pycache__/
 *.mp4
 !test_video.mp4
 !musa_pharaoh_story.mp4
+!musa_pharaoh_long.mp4
 *.tmp
